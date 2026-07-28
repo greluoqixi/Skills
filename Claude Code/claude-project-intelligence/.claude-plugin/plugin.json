@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "claude-project-intelligence",
+  "displayName": "Claude Project Intelligence",
+  "version": "0.1.0",
+  "description": "Semantic project indexing, focused code navigation, and reviewed bug knowledge for large repositories.",
+  "author": {
+    "name": "Claude Code Project Tools"
+  },
+  "keywords": [
+    "project-index",
+    "code-navigation",
+    "bug-knowledge"
+  ]
+}

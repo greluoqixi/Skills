@@ -1,0 +1,4 @@
+claude-project-intelligence/node_modules/
+claude-project-intelligence/coverage/
+claude-project-intelligence/.tmp/
+tests/.cache/

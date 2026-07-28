@@ -1,0 +1,26 @@
+schema_version: "1.0"
+id: identity.authentication
+name: Authentication
+path: src/identity/authentication
+parent: null
+kind: business
+summary: Authenticates users and issues application sessions.
+responsibilities: []
+non_responsibilities: []
+routing_terms: []
+entrypoints: []
+key_files: []
+children: []
+public_interfaces: []
+dependencies: []
+affected_by: []
+tests: []
+rules: []
+guidance: []
+bug_knowledge: .claude/bug-knowledge/indexes/by-module/identity.authentication.json
+freshness:
+  structure_hash: sha256:0000000000000000000000000000000000000000000000000000000000000000
+  commit: null
+  generator_version: 0.1.0
+  updated_at: 2026-07-28T00:00:00Z
+review_status: candidate

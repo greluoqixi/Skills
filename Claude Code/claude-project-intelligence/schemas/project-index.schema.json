@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:claude-project-intelligence:project-index:1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project", "areas", "cross_module_rules", "excludes", "freshness"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "summary"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 120},
+        "summary": {"type": "string", "minLength": 1, "maxLength": 500}
+      }
+    },
+    "areas": {
+      "type": "array", "maxItems": 25,
+      "items": {"type": "object", "additionalProperties": false, "required": ["id", "summary", "index"],
+        "properties": {
+          "id": {"$ref": "#/$defs/areaId"},
+          "summary": {"type": "string", "maxLength": 300},
+          "index": {"$ref": "#/$defs/path"}
+        }
+      }
+    },
+    "cross_module_rules": {"type": "array", "maxItems": 30, "items": {"type": "string", "maxLength": 300}},
+    "excludes": {"type": "array", "maxItems": 200, "items": {"type": "string", "maxLength": 300}},
+    "freshness": {"$ref": "#/$defs/freshness"},
+    "extensions": {"type": "object"}
+  },
+  "$defs": {
+    "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?![A-Za-z]:)[^\\\\\\u0000]+$"},
+    "areaId": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$", "maxLength": 64},
+    "freshness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["generator_version", "updated_at"],
+      "properties": {
+        "generator_version": {"type": "string"},
+        "updated_at": {"type": "string", "format": "date-time"},
+        "commit": {"type": ["string", "null"]},
+        "structure_hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

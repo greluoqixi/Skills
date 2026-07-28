@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:claude-project-intelligence:config:1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "exclude", "limits", "modules"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "exclude": {"type": "array", "maxItems": 200, "items": {"type": "string", "maxLength": 300}},
+    "limits": {"type": "object"},
+    "modules": {"type": "object"},
+    "extensions": {"type": "object"}
+  }
+}

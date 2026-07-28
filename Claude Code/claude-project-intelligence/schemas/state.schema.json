@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:claude-project-intelligence:state:1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "generator_version", "repository_id", "branch", "commit", "dirty", "manifest_hash", "updated_at"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "generator_version": {"type": "string"},
+    "repository_id": {"type": "string"},
+    "branch": {"type": ["string", "null"]},
+    "commit": {"type": ["string", "null"]},
+    "dirty": {"type": "boolean"},
+    "manifest_hash": {"type": "string"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  }
+}

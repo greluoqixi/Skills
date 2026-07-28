@@ -1,0 +1,22 @@
+# Local agent metadata
+/.agents/
+/.codex/
+
+# Dependencies and generated test output
+**/node_modules/
+**/coverage/
+**/.tmp/
+**/.cache/
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

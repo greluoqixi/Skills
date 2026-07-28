@@ -1,0 +1,10 @@
+schema_version: "1.0"
+project:
+  name: example
+  summary: Replace with a short, stable project purpose.
+areas: []
+cross_module_rules: []
+excludes: []
+freshness:
+  generator_version: 0.1.0
+  updated_at: 2026-07-28T00:00:00Z

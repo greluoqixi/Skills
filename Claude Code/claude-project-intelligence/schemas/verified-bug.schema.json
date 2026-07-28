@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:claude-project-intelligence:bug-entry:1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "title", "status", "classification", "scope", "signatures", "applicability", "root_cause", "fix", "verification", "risks", "relations", "lifecycle"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^BUG-[A-Z0-9]+-[0-9]{4,}$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 180},
+    "status": {"enum": ["candidate", "verified", "needs-review", "deprecated", "withdrawn", "superseded"]},
+    "classification": {"type": "object", "additionalProperties": false, "required": ["type", "severity", "root_cause_category", "tags"], "properties": {"type": {"type": "string"}, "severity": {"enum": ["low", "medium", "high", "critical"]}, "root_cause_category": {"type": "string"}, "tags": {"type": "array", "maxItems": 30, "items": {"type": "string", "maxLength": 50}}}},
+    "scope": {"type": "object", "additionalProperties": false, "required": ["primary_module", "related_modules", "paths", "symbols"], "properties": {"primary_module": {"$ref": "#/$defs/moduleId"}, "related_modules": {"type": "array", "items": {"$ref": "#/$defs/moduleId"}}, "paths": {"type": "array", "items": {"$ref": "#/$defs/path"}}, "symbols": {"type": "array", "items": {"type": "string", "maxLength": 200}}}},
+    "signatures": {"type": "object", "additionalProperties": false, "required": ["error_codes", "normalized_messages", "stack_frames", "behavioral", "fingerprints"], "properties": {"error_codes": {"$ref": "#/$defs/strings"}, "normalized_messages": {"$ref": "#/$defs/strings"}, "stack_frames": {"$ref": "#/$defs/strings"}, "behavioral": {"$ref": "#/$defs/strings"}, "fingerprints": {"type": "object", "propertyNames": {"pattern": "^(error-code|normalized-message|stack-top3|behavior-and-module|root-cause-pattern)/v[0-9]+$"}, "additionalProperties": {"type": "string"}}}},
+    "applicability": {"type": "object", "additionalProperties": false, "required": ["repository", "branches", "affected_versions", "fixed_versions", "runtime", "conditions", "not_applicable_when"], "properties": {"repository": {"type": "string"}, "branches": {"$ref": "#/$defs/strings"}, "introduced_commit": {"type": ["string", "null"]}, "fixed_commit": {"type": ["string", "null"]}, "affected_versions": {"$ref": "#/$defs/strings"}, "fixed_versions": {"$ref": "#/$defs/strings"}, "runtime": {"$ref": "#/$defs/strings"}, "conditions": {"$ref": "#/$defs/strings"}, "not_applicable_when": {"$ref": "#/$defs/strings"}}},
+    "root_cause": {"type": "object", "additionalProperties": false, "required": ["summary", "evidence"], "properties": {"summary": {"type": "string", "maxLength": 1000}, "evidence": {"$ref": "#/$defs/strings"}}},
+    "fix": {"type": "object", "additionalProperties": false, "required": ["summary", "pattern", "changed_paths", "patch_reference"], "properties": {"summary": {"type": "string"}, "pattern": {"type": "string"}, "changed_paths": {"type": "array", "items": {"$ref": "#/$defs/path"}}, "patch_reference": {"type": ["string", "null"]}}},
+    "verification": {"type": "object", "additionalProperties": false, "required": ["reproduction", "regression_tests", "additional_commands", "confidence"], "properties": {"reproduction": {"$ref": "#/$defs/strings"}, "regression_tests": {"$ref": "#/$defs/strings"}, "additional_commands": {"$ref": "#/$defs/strings"}, "verified_commit": {"type": ["string", "null"]}, "verified_at": {"type": ["string", "null"], "format": "date-time"}, "verified_by": {"type": ["string", "null"]}, "confidence": {"enum": ["low", "medium", "high"]}}},
+    "risks": {"$ref": "#/$defs/strings"},
+    "relations": {"type": "object"},
+    "lifecycle": {"type": "object", "properties": {"created_at": {"type": "string", "format": "date-time"}, "updated_at": {"type": "string", "format": "date-time"}, "last_verified_commit": {"type": ["string", "null"]}, "deprecated_reason": {"type": "string"}, "withdrawal_reason": {"type": "string"}, "superseded_by": {"type": "string"}}, "required": ["created_at", "updated_at"], "additionalProperties": false},
+    "extensions": {"type": "object"}
+  },
+  "allOf": [
+    {"if": {"properties": {"status": {"const": "verified"}}}, "then": {"properties": {"verification": {"required": ["regression_tests", "verified_commit", "verified_at", "verified_by"]}, "root_cause": {"properties": {"evidence": {"minItems": 1}}}, "applicability": {"properties": {"not_applicable_when": {"minItems": 1}}}}}},
+    {"if": {"properties": {"status": {"const": "withdrawn"}}}, "then": {"properties": {"lifecycle": {"required": ["withdrawal_reason"]}}}},
+    {"if": {"properties": {"status": {"const": "deprecated"}}}, "then": {"properties": {"lifecycle": {"required": ["deprecated_reason"]}}}},
+    {"if": {"properties": {"status": {"const": "superseded"}}}, "then": {"properties": {"lifecycle": {"required": ["superseded_by"]}}}}
+  ],
+  "$defs": {
+    "moduleId": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:\\.[a-z][a-z0-9]*(?:-[a-z0-9]+)*)*$"},
+    "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?![A-Za-z]:)[^\\\\\\u0000]+$"},
+    "strings": {"type": "array", "maxItems": 50, "items": {"type": "string", "maxLength": 1000}}
+  }
+}

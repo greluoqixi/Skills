@@ -1,0 +1,30 @@
+{
+  "name": "claude-project-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --format=esm --target=node20 --outfile=dist/cli.mjs --banner:js='#!/usr/bin/env node\nimport { createRequire } from \"node:module\"; const require = createRequire(import.meta.url);'",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "validate": "npm run typecheck && npm run lint && npm test && npm run build"
+  },
+  "dependencies": {
+    "ajv": "8.17.1",
+    "ignore": "7.0.5",
+    "yaml": "2.8.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.31.0",
+    "@types/node": "24.1.0",
+    "esbuild": "0.25.8",
+    "eslint": "9.31.0",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.38.0"
+  }
+}

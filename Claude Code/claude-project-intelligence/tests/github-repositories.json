@@ -1,0 +1,30 @@
+[
+  {
+    "url": "https://github.com/sindresorhus/p-limit.git",
+    "tag": "v7.1.1",
+    "commit": "25655a000c5179f6d3732243b2d069d8073eaf71",
+    "license": "MIT",
+    "purpose": "Small JavaScript and TypeScript repository"
+  },
+  {
+    "url": "https://github.com/pallets/click.git",
+    "tag": "8.3.1",
+    "commit": "1d038f270701498433cb432f54db89f95f07a845",
+    "license": "BSD-3-Clause",
+    "purpose": "Python src layout with documentation and tests"
+  },
+  {
+    "url": "https://github.com/go-chi/chi.git",
+    "tag": "v5.2.3",
+    "commit": "9b9fb55def404397748a9fc7e044efe9db1d618e",
+    "license": "MIT",
+    "purpose": "Go packages and public middleware interfaces"
+  },
+  {
+    "url": "https://github.com/changesets/changesets.git",
+    "tag": "@changesets/cli@2.29.7",
+    "commit": "8c065c4313e06e13ce48d6681aa9a253d69f655f",
+    "license": "MIT",
+    "purpose": "TypeScript monorepo with multiple packages"
+  }
+]

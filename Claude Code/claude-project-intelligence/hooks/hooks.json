@@ -1,0 +1,80 @@
+{
+  "description": "Maintain project intelligence using deterministic reconciliation.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/dist/cli.mjs",
+              "hook",
+              "mark-dirty",
+              "--repo",
+              "${CLAUDE_PROJECT_DIR}"
+            ],
+            "timeout": 2
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/dist/cli.mjs",
+              "hook",
+              "check-stale",
+              "--repo",
+              "${CLAUDE_PROJECT_DIR}",
+              "--format",
+              "json"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/dist/cli.mjs",
+              "hook",
+              "reconcile",
+              "--repo",
+              "${CLAUDE_PROJECT_DIR}"
+            ],
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "${CLAUDE_PLUGIN_ROOT}/dist/cli.mjs",
+              "hook",
+              "reconcile",
+              "--repo",
+              "${CLAUDE_PROJECT_DIR}"
+            ],
+            "timeout": 45
+          }
+        ]
+      }
+    ]
+  }
+}

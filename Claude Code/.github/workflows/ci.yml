@@ -1,0 +1,31 @@
+name: claude-project-intelligence
+
+on:
+  push:
+    paths:
+      - "claude-project-intelligence/**"
+      - ".claude-plugin/marketplace.json"
+  pull_request:
+    paths:
+      - "claude-project-intelligence/**"
+      - ".claude-plugin/marketplace.json"
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node: [20, 22]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: claude-project-intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: claude-project-intelligence/package-lock.json
+      - run: npm ci
+      - run: npm run validate

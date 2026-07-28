@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:claude-project-intelligence:module:1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "name", "path", "parent", "kind", "summary", "responsibilities", "non_responsibilities", "routing_terms", "entrypoints", "key_files", "children", "public_interfaces", "dependencies", "affected_by", "tests", "rules", "guidance", "bug_knowledge", "freshness", "review_status"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "id": {"$ref": "#/$defs/moduleId"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 120},
+    "path": {"$ref": "#/$defs/path"},
+    "additional_paths": {"type": "array", "maxItems": 10, "items": {"$ref": "#/$defs/path"}},
+    "parent": {"oneOf": [{"$ref": "#/$defs/moduleId"}, {"type": "null"}]},
+    "kind": {"type": "string", "maxLength": 50},
+    "summary": {"type": "string", "minLength": 1, "maxLength": 600},
+    "responsibilities": {"$ref": "#/$defs/shortList"},
+    "non_responsibilities": {"$ref": "#/$defs/shortList"},
+    "routing_terms": {"type": "array", "maxItems": 50, "items": {"type": "string", "maxLength": 80}},
+    "entrypoints": {"type": "array", "maxItems": 20, "items": {"$ref": "#/$defs/path"}},
+    "key_files": {"type": "array", "maxItems": 15, "items": {"type": "object", "additionalProperties": false, "required": ["path", "reason"], "properties": {"path": {"$ref": "#/$defs/path"}, "reason": {"type": "string", "maxLength": 240}}}},
+    "children": {"type": "array", "maxItems": 10, "items": {"$ref": "#/$defs/moduleId"}},
+    "public_interfaces": {"$ref": "#/$defs/shortList"},
+    "dependencies": {"type": "array", "maxItems": 30, "items": {"$ref": "#/$defs/moduleId"}},
+    "affected_by": {"type": "array", "maxItems": 30, "items": {"$ref": "#/$defs/moduleId"}},
+    "tests": {"type": "array", "maxItems": 30, "items": {"type": "object", "additionalProperties": false, "required": ["path"], "properties": {"path": {"$ref": "#/$defs/path"}, "command": {"type": "string", "maxLength": 300}}}},
+    "rules": {"$ref": "#/$defs/shortList"},
+    "guidance": {"type": "array", "maxItems": 20, "items": {"$ref": "#/$defs/path"}},
+    "bug_knowledge": {"$ref": "#/$defs/path"},
+    "freshness": {"type": "object", "additionalProperties": false, "required": ["structure_hash", "commit", "generator_version", "updated_at"], "properties": {"structure_hash": {"type": "string"}, "commit": {"type": ["string", "null"]}, "generator_version": {"type": "string"}, "updated_at": {"type": "string", "format": "date-time"}}},
+    "review_status": {"enum": ["candidate", "reviewed"]},
+    "extensions": {"type": "object"}
+  },
+  "$defs": {
+    "moduleId": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:\\.[a-z][a-z0-9]*(?:-[a-z0-9]+)*)*$", "maxLength": 128},
+    "path": {"type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?![A-Za-z]:)[^\\\\\\u0000]+$"},
+    "shortList": {"type": "array", "maxItems": 30, "items": {"type": "string", "maxLength": 300}}
+  }
+}
