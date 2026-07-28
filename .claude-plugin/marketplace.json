@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "greluoqixi-skills",
+  "owner": {
+    "name": "greluoqixi"
+  },
+  "description": "Community-built Claude Code plugins from the greluoqixi/Skills repository.",
+  "plugins": [
+    {
+      "name": "claude-project-intelligence",
+      "source": "./Claude Code/claude-project-intelligence",
+      "description": "Project navigation, deterministic indexing, and reviewed bug knowledge for large repositories.",
+      "category": "development",
+      "tags": [
+        "project-index",
+        "code-navigation",
+        "bug-knowledge"
+      ]
+    }
+  ]
+}

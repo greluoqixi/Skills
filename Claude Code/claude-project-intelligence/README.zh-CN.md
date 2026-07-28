@@ -25,36 +25,66 @@
 
 ## 安装
 
-在包含 `Claude Code/` 的目录中运行：
+直接从公开 GitHub Marketplace 安装，不需要克隆本仓库。在 Claude Code 中运行：
 
 ```text
-claude plugin marketplace add "./Claude Code"
-claude plugin install claude-project-intelligence@claude-code-project-tools --scope project
+/plugin marketplace add greluoqixi/Skills
+/plugin install claude-project-intelligence@greluoqixi-skills
+/reload-plugins
 ```
 
-已有会话中运行 `/reload-plugins`。开发时也可直接使用：
+默认安装到 user scope，可在你的所有项目中使用。如需在某个目标仓库中共享启用配置，
+请在该目标仓库的终端中运行：
 
 ```text
-claude --plugin-dir "./Claude Code/claude-project-intelligence"
+claude plugin marketplace add greluoqixi/Skills
+claude plugin install claude-project-intelligence@greluoqixi-skills --scope project
 ```
 
 ## 更新与卸载
 
+在 Claude Code 中运行：
+
 ```text
-claude plugin marketplace update claude-code-project-tools
-claude plugin update claude-project-intelligence@claude-code-project-tools --scope project
-claude plugin uninstall claude-project-intelligence@claude-code-project-tools --scope project
+/plugin marketplace update greluoqixi-skills
+/reload-plugins
+/plugin uninstall claude-project-intelligence@greluoqixi-skills
 ```
 
 卸载工具不会删除目标仓库的 Project Index、BUG Knowledge 或 `CLAUDE.md` managed block。删除项目数据必须使用独立且显式的 `cpi knowledge purge`。
 
 ## 快速开始
 
-1. 在目标仓库打开 Claude Code。
-2. 运行 `/claude-project-intelligence:project-bootstrap .`。
-3. 应用前审核语义 Area 和 Module 候选。
-4. 用 `/claude-project-intelligence:project-context <任务>` 路由任务。
-5. 修复故障时使用 `/claude-project-intelligence:fix-with-history <症状>`。
+在需要处理的目标仓库中打开 Claude Code，然后复制与你的任务匹配的提示词。
+Plugin Skills 使用命名空间，所以下列每条提示词都明确指定了本插件中的 Skill。
+
+初始化或刷新项目智能知识：
+
+```text
+/claude-project-intelligence:project-bootstrap .
+```
+
+实现任务前定位最小相关上下文：
+
+```text
+/claude-project-intelligence:project-context 增加可配置的会话过期时间，但不能改变认证模块的公共 API。请先定位相关模块、入口、符号、测试、规则和 BUG 历史。
+```
+
+将已审核的历史经验作为假设来排查 BUG：
+
+```text
+/claude-project-intelligence:fix-with-history 用户刷新原本有效的会话后立即收到 AUTH-401。请复现问题，检索适用的 BUG 历史，独立验证当前根因，实施最小合理修复并增加回归测试。
+```
+
+审核 candidate BUG 记录，判断是否可经人工确认后晋升：
+
+```text
+/claude-project-intelligence:knowledge-review BUG-AUTH-0001
+```
+
+请将示例任务、症状或 BUG ID 替换为你的实际内容。在目标仓库根目录打开
+Claude Code 时，bootstrap 参数保留为 `.`。该 Skill 会先展示语义 Area 和
+Module 变更供审核，再执行写入。
 
 bootstrap 会创建 `.claude/project-intelligence.yaml`、项目与 BUG 知识目录、短导航规则和 `CLAUDE.md` managed block；现有内容会保留。
 
@@ -88,7 +118,8 @@ CLI 只写目标仓库根 `CLAUDE.md` 和 `.claude/` 知识路径；拒绝路径
 
 ## 故障排查
 
-- 运行 `claude plugin validate ./Claude Code/claude-project-intelligence --strict`。
+- 运行 `/plugin marketplace update greluoqixi-skills`，然后运行 `/reload-plugins`。
+- 在 `/plugin` 的 Installed 页确认插件已启用。
 - 检查 `node --version` 和 `claude --version`。
 - 运行 `cpi knowledge doctor --repo . --format json`。
 - 中断更新后运行 `cpi index repair --repo .`。

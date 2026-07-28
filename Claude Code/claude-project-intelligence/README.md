@@ -25,36 +25,70 @@ The scanner is language-neutral and supports monoliths, monorepos, and mixed-lan
 
 ## Install
 
-From the directory containing `Claude Code/`:
+Install directly from the public GitHub marketplace; cloning this repository is
+not required. In Claude Code, run:
 
 ```text
-claude plugin marketplace add "./Claude Code"
-claude plugin install claude-project-intelligence@claude-code-project-tools --scope project
+/plugin marketplace add greluoqixi/Skills
+/plugin install claude-project-intelligence@greluoqixi-skills
+/reload-plugins
 ```
 
-Run `/reload-plugins` in an existing Claude Code session. For development without installing:
+This installs at user scope by default, making the plugin available in all of
+your projects. To share the plugin enablement with one repository, use the
+terminal commands below from that target repository:
 
 ```text
-claude --plugin-dir "./Claude Code/claude-project-intelligence"
+claude plugin marketplace add greluoqixi/Skills
+claude plugin install claude-project-intelligence@greluoqixi-skills --scope project
 ```
 
 ## Update and uninstall
 
+In Claude Code:
+
 ```text
-claude plugin marketplace update claude-code-project-tools
-claude plugin update claude-project-intelligence@claude-code-project-tools --scope project
-claude plugin uninstall claude-project-intelligence@claude-code-project-tools --scope project
+/plugin marketplace update greluoqixi-skills
+/reload-plugins
+/plugin uninstall claude-project-intelligence@greluoqixi-skills
 ```
 
 Uninstalling the tool does not delete `.claude/project-knowledge/`, `.claude/bug-knowledge/`, or the managed block in the target repository. Project data deletion is a separate, explicit `cpi knowledge purge` operation.
 
 ## Quick start
 
-1. Open Claude Code in the target repository.
-2. Run `/claude-project-intelligence:project-bootstrap .`.
-3. Review the proposed semantic Areas and Modules before applying.
-4. Route work with `/claude-project-intelligence:project-context <task>`.
-5. For defects, use `/claude-project-intelligence:fix-with-history <symptom>`.
+Open Claude Code in the repository you want to work on, then copy the prompt
+that matches your task. Plugin Skills are namespaced, so every prompt below
+explicitly selects a Skill from this plugin.
+
+Initialize or refresh project intelligence:
+
+```text
+/claude-project-intelligence:project-bootstrap .
+```
+
+Find the smallest relevant repository context before implementing a task:
+
+```text
+/claude-project-intelligence:project-context Add configurable session expiry without changing the public authentication API. Locate the relevant modules, entrypoints, symbols, tests, rules, and related bug knowledge first.
+```
+
+Investigate a defect using reviewed history as hypotheses:
+
+```text
+/claude-project-intelligence:fix-with-history Users receive AUTH-401 immediately after refreshing an otherwise valid session. Reproduce the failure, check applicable bug history, verify the current root cause, implement the smallest justified fix, and add regression coverage.
+```
+
+Review a candidate BUG record for possible human-confirmed promotion:
+
+```text
+/claude-project-intelligence:knowledge-review BUG-AUTH-0001
+```
+
+Replace the example task, symptom, or BUG ID with your own. Keep `.` for
+bootstrap when Claude Code was opened at the target repository root. The
+bootstrap Skill presents semantic Area and Module changes for review before
+writing them.
 
 The bootstrap creates `.claude/project-intelligence.yaml`, project and bug knowledge directories, a concise navigation rule, and a managed block in `CLAUDE.md`. Existing content is preserved.
 
@@ -88,7 +122,8 @@ Semantic module discovery remains review-based. Rename similarity can be uncerta
 
 ## Troubleshooting
 
-- Run `claude plugin validate ./Claude Code/claude-project-intelligence --strict`.
+- Run `/plugin marketplace update greluoqixi-skills`, then `/reload-plugins`.
+- Confirm the plugin is enabled in `/plugin` under the Installed tab.
 - Check `node --version` and `claude --version`.
 - Run `cpi knowledge doctor --repo . --format json`.
 - If an interrupted update is detected, run `cpi index repair --repo .`.
