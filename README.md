@@ -1,12 +1,14 @@
 [中文](./README.zh-CN.md)
 
-# Claude Code and Codex Skills
+# Skills
 
 A public collection of self-built Skills, Plugins, and supporting tools for
-Claude Code and Codex.
+AI coding agents.
 
-The two ecosystems are kept in separate top-level directories so that their
+Each agent ecosystem is kept in a separate top-level directory so that its
 formats, installation methods, and compatibility requirements remain clear.
+Claude Code and Codex are the first supported ecosystems; more agents may be
+added over time.
 
 ## Repository layout
 
@@ -15,7 +17,7 @@ formats, installation methods, and compatibility requirements remain clear.
 | [`Claude Code/`](./Claude%20Code/README.md) | Claude Code Skills and installable Plugins. |
 | [`Codex/`](./Codex/) | Codex Skills and Plugins. |
 
-## Available projects
+## Supported agents and projects
 
 ### Claude Code
 
@@ -40,5 +42,6 @@ No public projects have been added yet.
 - Validate and test an extension with the product and runtime versions claimed
   by its documentation.
 
-Unless a project states otherwise, compatibility and licensing are documented
-at the project level.
+When adding support for another agent, create a dedicated top-level directory
+and a concise bilingual collection README. Unless a project states otherwise,
+compatibility and licensing are documented at the project level.
