@@ -7,6 +7,7 @@ This directory contains installable Claude Code skills and plugins. Each project
 ## Available projects
 
 - [claude-project-intelligence](./claude-project-intelligence/README.md) — Project navigation, indexing, and verified bug knowledge support.
+- [china-job-search](./china-job-search/README.md) — Local-first job search, application, interview, and tracking workflows for Mainland China.
 
 ## Compatibility and contributions
 

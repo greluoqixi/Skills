@@ -21,6 +21,8 @@ Claude Code 与 Codex 是当前首批支持的生态，后续可以继续扩展�
 
 - [`claude-project-intelligence`](./Claude%20Code/claude-project-intelligence/README.zh-CN.md)
   — 面向大型代码仓库的项目导航、确定性索引和已验证 BUG 知识支持。
+- [`china-job-search`](./Claude%20Code/china-job-search/README.zh-CN.md)
+  — 面向中国大陆社招、校招、实习和央国企招聘的本地求职工作流。
 
 Claude Code 相关的兼容性说明和项目导航请参阅
 [Claude Code 集合说明](./Claude%20Code/README.zh-CN.md)。

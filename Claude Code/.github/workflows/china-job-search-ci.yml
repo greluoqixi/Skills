@@ -1,0 +1,36 @@
+name: china-job-search
+
+on:
+  push:
+    paths:
+      - "china-job-search/**"
+      - ".claude-plugin/marketplace.json"
+  pull_request:
+    paths:
+      - "china-job-search/**"
+      - ".claude-plugin/marketplace.json"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: china-job-search
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m unittest discover -s tests -v
+      - name: Install PDF toolchain
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends texlive-xetex texlive-lang-chinese poppler-utils
+      - name: Compile and inspect Chinese templates
+        run: |
+          cd skills/china-job-search/assets/latex
+          xelatex -interaction=nonstopmode -halt-on-error resume-cn.tex
+          xelatex -interaction=nonstopmode -halt-on-error cover-letter-cn.tex
+          python ../../scripts/verify_pdf.py resume-cn.pdf --pages 1,2 --contains '[姓名]' --min-chars 60
+          python ../../scripts/verify_pdf.py cover-letter-cn.pdf --pages 1 --contains '[姓名]' --min-chars 40

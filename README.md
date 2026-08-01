@@ -24,6 +24,9 @@ added over time.
 - [`claude-project-intelligence`](./Claude%20Code/claude-project-intelligence/README.md)
   — Project navigation, deterministic indexing, and verified bug knowledge
   support for large repositories.
+- [`china-job-search`](./Claude%20Code/china-job-search/README.md)
+  — Local-first job search, application, interview, and outcome workflows
+  adapted for Mainland China.
 
 See the [Claude Code collection README](./Claude%20Code/README.md) for
 Claude Code-specific compatibility and project navigation.

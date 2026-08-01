@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "china-job-search",
+  "displayName": "China Job Search",
+  "version": "0.1.0",
+  "description": "A local-first job-search workflow adapted for Mainland China's enterprise, campus, internship, and state-owned-enterprise markets.",
+  "author": {
+    "name": "greluoqixi Skills"
+  },
+  "keywords": [
+    "china",
+    "job-search",
+    "resume",
+    "campus-recruitment",
+    "career"
+  ]
+}

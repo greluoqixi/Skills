@@ -7,6 +7,7 @@
 ## 可用项目
 
 - [claude-project-intelligence](./claude-project-intelligence/README.zh-CN.md) — 提供项目导航、索引和经过验证的 BUG 知识支持。
+- [china-job-search](./china-job-search/README.zh-CN.md) — 面向中国大陆社招、校招、实习和央国企招聘的本地求职、申请、面试与跟踪工作流。
 
 ## 兼容性与贡献
 

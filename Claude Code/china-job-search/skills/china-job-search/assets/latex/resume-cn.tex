@@ -1,0 +1,46 @@
+\documentclass[10pt,a4paper]{ctexart}
+\usepackage[margin=1.35cm]{geometry}
+\usepackage{enumitem,hyperref,tabularx,titlesec,xcolor}
+\pagestyle{empty}
+\definecolor{accent}{HTML}{1F4E79}
+\hypersetup{colorlinks=true,urlcolor=accent}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=2pt,parsep=0pt}
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\vspace{-2pt}\titlerule]
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+\newcommand{\entry}[4]{\noindent\textbf{#1}\hfill #2\\\textit{#3}\hfill #4\par}
+
+\begin{document}
+\begin{center}
+  {\LARGE\bfseries [姓名]}\\[3pt]
+  [城市] \quad [手机号] \quad \href{mailto:[email@example.com]}{[email@example.com]} \quad \href{[作品集URL]}{[作品集]}
+\end{center}
+
+\section{求职概述}
+[用两到三句话说明目标岗位、最强真实证据和可带来的价值。]
+
+\section{核心能力}
+\begin{itemize}
+  \item \textbf{[岗位关键词]}：[真实技能、使用场景和结果]
+  \item \textbf{[岗位关键词]}：[真实技能、使用场景和结果]
+\end{itemize}
+
+\section{工作/实习经历}
+\entry{[公司]}{[开始--结束]}{[岗位]}{[城市]}
+\begin{itemize}
+  \item [动作 + 场景 + 方法 + 可验证结果]
+  \item [动作 + 场景 + 方法 + 可验证结果]
+\end{itemize}
+
+\section{项目经历}
+\entry{[项目名称]}{[开始--结束]}{[本人角色]}{}
+\begin{itemize}
+  \item [目标、本人贡献、技术难点和结果]
+\end{itemize}
+
+\section{教育背景}
+\entry{[学校]}{[开始--结束]}{[学历] · [专业]}{[城市]}
+[仍在读时明确写“预计 YYYY 年 MM 月毕业”。]
+
+\section{技能与证书}
+[语言、工具、证书及真实熟练程度。]
+\end{document}

@@ -16,6 +16,19 @@
         "code-navigation",
         "bug-knowledge"
       ]
+    },
+    {
+      "name": "china-job-search",
+      "source": "./Claude Code/china-job-search",
+      "description": "Local-first job search, applications, interviews, and tracking adapted for Mainland China.",
+      "category": "productivity",
+      "tags": [
+        "china",
+        "job-search",
+        "resume",
+        "campus-recruitment",
+        "career"
+      ]
     }
   ]
 }

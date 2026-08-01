@@ -1,0 +1,15 @@
+# Candidate data and generated application material are private by default.
+profile/*.md
+!profile/*.example.md
+documents/
+applications/
+search/jobs.json
+tracker.csv
+reports/
+templates/
+*.pdf
+*.aux
+*.log
+*.out
+*.txt
+!.gitignore
