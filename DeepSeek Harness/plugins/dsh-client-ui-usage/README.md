@@ -1,4 +1,4 @@
-[中文](./README.zh-CN.md)
+[中文](https://github.com/greluoqixi/Skills/blob/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.zh-CN.md)
 
 # dsh-client-ui-usage
 
