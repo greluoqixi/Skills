@@ -1,9 +1,10 @@
 {
-  "name": "@deepseek-ai/dsh-client-ui-usage",
+  "name": "dsh-client-ui-usage",
   "description": "Live usage surface: context-window occupancy meter and real-time billing estimates in the session header",
-  "version": "0.1.0-rc.6",
+  "version": "0.1.0",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
   },
   "type": "module",
   "main": "lib/index.js",
@@ -14,9 +15,19 @@
     "./client": {
       "default": "./lib/client.js"
     },
+    "./cordis.patch.yml": "./cordis.patch.yml",
     "./package.json": "./package.json"
   },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "LICENSE"
+  ],
   "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "inject": [
         "@deepseek-ai/dsh-client-runtime",
@@ -29,6 +40,9 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0",
+    "@deepseek-ai/dsh-client-locale": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-runtime": "^0.1.0-rc.6",
+    "@deepseek-ai/dsh-client-ui-conversation": "^0.1.0-rc.6",
     "@deepseek-ai/dsh-client-ui-primitives": "^0.1.0-rc.6"
   }
 }

@@ -1,0 +1,9 @@
+# dsh-client-ui-usage bundle patch.
+#
+# Inserts this bundle's own host Loader row. The browser half is discovered
+# through the package.json `dsh.client` declaration and served by DSH at
+# `/plugins/dsh-client-ui-usage/client.js`; it injects the UsageMeter
+# component into the `conversation.session.header.utilities` slot.
+- insert:
+    - id: ui-usage
+      name: dsh-client-ui-usage

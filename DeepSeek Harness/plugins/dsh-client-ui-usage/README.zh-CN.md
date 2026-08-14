@@ -6,8 +6,8 @@
 **上下文窗口占用率**与**计费估算**。一个紧凑的胶囊组件即可展示上下文窗口的占用
 程度与当前会话的花费；点击后弹出详情面板，对两项数据进行细分。
 
-- 包名：`@deepseek-ai/dsh-client-ui-usage`
-- 版本：`0.1.0-rc.6`
+- 包名：`dsh-client-ui-usage`
+- 版本：`0.1.0`
 - 类型：DSH 客户端插件（platform `web`）
 - 许可证：MIT
 
@@ -48,7 +48,7 @@
 
 本插件是纯 UI 插件。宿主端（`lib/index.js`）为空 `apply`，仅用于让包出现在 DSH
 loader 树中；浏览器端（`lib/client.js`）通过 `package.json` 中的 `dsh.client`
-声明被 DSH 发现，并由 DSH 在 `/plugins/@deepseek-ai/dsh-client-ui-usage/client.js`
+声明被 DSH 发现，并由 DSH 在 `/plugins/dsh-client-ui-usage/client.js`
 提供服务。它把 `UsageMeter` 组件注入 `conversation.session.header.utilities`
 插槽，并读取三个会话投影以及 trajectory 视图的已结算 assistant 节点：
 
@@ -75,59 +75,37 @@ loader 树中；浏览器端（`lib/client.js`）通过 `package.json` 中的 `d
   自动创建 `$DSH_HOME/profiles/web`）。
 - 插件运行在浏览器中，因此需要 DSH 的 **web** UI。
 
-> 该插件目前为本地开发状态，**尚未发布到 npm**。请使用下面的本地安装方式；
-> 发布后同样适用 registry 安装方式。
+> 插件自带 bundle 补丁（`cordis.patch.yml`），因此 `dsh plugin add` 会同时完成
+> 安装与启用，无需再手工添加 `cordis.patch.yml` 记录。
 
-### 方式 A — 本地安装（推荐，当前可用）
-
-1. 让包对 web profile 的 loader 可见 —— 在 profile 的 `node_modules` 下创建
-   符号链接或直接复制：
-
-   ```sh
-   DSH_HOME="${DSH_HOME:-$HOME/.dsh}"
-   PROFILE="$DSH_HOME/profiles/web"
-   mkdir -p "$PROFILE/node_modules/@deepseek-ai"
-
-   # 符号链接可在开发时原地同步更新（推荐）：
-   ln -s "$PWD/DeepSeek Harness/plugins/dsh-client-ui-usage" \
-     "$PROFILE/node_modules/@deepseek-ai/dsh-client-ui-usage"
-
-   # 或者直接复制：
-   # cp -r "DeepSeek Harness/plugins/dsh-client-ui-usage" \
-   #   "$PROFILE/node_modules/@deepseek-ai/dsh-client-ui-usage"
-   ```
-
-2. 在 loader 补丁层启用插件 —— 向 profile 的 `cordis.patch.yml` 追加一条
-   insert 记录（该文件在每一层 bundle 之后应用；`cordis.yml` 是自动生成的，
-   请勿直接编辑）：
-
-   ```yaml
-   # ~/.dsh/profiles/web/cordis.patch.yml
-   - insert:
-       - id: ui-usage
-         name: '@deepseek-ai/dsh-client-ui-usage'
-   ```
-
-3. 重启 Web UI 并验证：
-
-   ```sh
-   dsh web
-   ```
-
-   打开界面（默认 `http://127.0.0.1:3080`，或你指定的端口，如
-   `dsh --profile web --port 8080`）。会话产生任意活动后，会话头部即会出现
-   用量胶囊。也可以到 设置 → 插件（inventory）中确认条目已加载，或确认
-   `/plugins/@deepseek-ai/dsh-client-ui-usage/client.js` 返回 `200`。
-
-### 方式 B — Registry 安装（发布后可用）
+### 方式 A — 本地安装（从本仓库源码）
 
 ```sh
-# 将包安装到 web profile 的 node_modules
-dsh plugin --profile web add @deepseek-ai/dsh-client-ui-usage
+# 在仓库根目录（包含 "DeepSeek Harness" 的目录）执行：
+dsh plugin --profile web add "./DeepSeek Harness/plugins/dsh-client-ui-usage"
 ```
 
-然后按方式 A 中同样的 `cordis.patch.yml` insert 记录启用插件，并重启
-`dsh web`。
+`dsh plugin` 会把该目录链接进 profile，并因包声明了 `dsh.bundle` 而将
+`dsh-client-ui-usage` 追加到 profile 的 bundle 列表。
+
+### 方式 B — Registry 安装
+
+```sh
+dsh plugin --profile web add dsh-client-ui-usage
+```
+
+### 验证
+
+重启 Web UI：
+
+```sh
+dsh web
+```
+
+打开界面（默认 `http://127.0.0.1:3080`，或你指定的端口，如
+`dsh --profile web --port 8080`）。会话产生任意活动后，会话头部即会出现
+用量胶囊。也可以到 设置 → 插件（inventory）中确认条目已加载，或确认
+`/plugins/dsh-client-ui-usage/client.js` 返回 `200`。
 
 ## 使用方法
 
@@ -154,8 +132,9 @@ dsh plugin --profile web add @deepseek-ai/dsh-client-ui-usage
 - DeepSeek Harness web profile（`dsh web`）。
 - 浏览器端需要 DSH 客户端运行时、语言包与对话 UI 表面（在 `package.json` 中以
   `dsh.client.inject` 声明）。
-- 对等依赖：`react ^18.2.0` 与 `@deepseek-ai/dsh-client-ui-primitives
-  ^0.1.0-rc.6`。
+- 对等依赖：`react ^18.2.0`、`@deepseek-ai/dsh-client-ui-primitives`、
+  `@deepseek-ai/dsh-client-runtime`、`@deepseek-ai/dsh-client-locale`、
+  `@deepseek-ai/dsh-client-ui-conversation`（均为 `^0.1.0-rc.6`）。
 
 ## 项目结构
 
@@ -164,7 +143,8 @@ dsh-client-ui-usage/
 ├── LICENSE              # MIT
 ├── README.md            # 英文说明
 ├── README.zh-CN.md      # 本文件（中文说明）
-├── package.json         # dsh.client 声明、exports、对等依赖
+├── package.json         # dsh.bundle + dsh.client 声明、exports、对等依赖
+├── cordis.patch.yml     # bundle 补丁 —— 插入 ui-usage Loader 行
 ├── docs/
 │   └── images/          # 界面效果图（common/ 通用，en/ 与 zh/ 按语言区分）
 └── lib/

@@ -8,8 +8,8 @@ the session header. One compact pill shows how full the context window is and
 how much the current session is costing; clicking it opens a detail panel that
 breaks both figures down.
 
-- Package name: `@deepseek-ai/dsh-client-ui-usage`
-- Version: `0.1.0-rc.6`
+- Package name: `dsh-client-ui-usage`
+- Version: `0.1.0`
 - Type: DSH client plugin (platform `web`)
 - License: MIT
 
@@ -60,7 +60,7 @@ The plugin is a pure UI surface. The host half (`lib/index.js`) is an empty
 `apply` so the package shows up in the DSH loader tree; the browser half
 (`lib/client.js`) is discovered through the `dsh.client` declaration in
 `package.json` and served by DSH at
-`/plugins/@deepseek-ai/dsh-client-ui-usage/client.js`. It injects the
+`/plugins/dsh-client-ui-usage/client.js`. It injects the
 `UsageMeter` component into the `conversation.session.header.utilities` slot
 and reads three session projections plus the trajectory view's settled
 assistant nodes:
@@ -92,61 +92,40 @@ when the trajectory view is unavailable.
   (run `dsh web` once; it auto-creates `$DSH_HOME/profiles/web`).
 - The plugin runs in the browser, so the DSH **web** UI is required.
 
-> This plugin is currently developed locally and is **not published to npm**.
-> Use the local install below. Once it is published, the registry method also
-> applies.
+> The package ships its own bundle patch (`cordis.patch.yml`), so `dsh plugin
+> add` both installs **and** activates it — no manual `cordis.patch.yml` entry
+> is needed.
 
-### Method A — Local install (recommended, works today)
-
-1. Make the package resolvable from the web profile's loader — either a
-   symlink or a plain copy into the profile's `node_modules`:
-
-   ```sh
-   DSH_HOME="${DSH_HOME:-$HOME/.dsh}"
-   PROFILE="$DSH_HOME/profiles/web"
-   mkdir -p "$PROFILE/node_modules/@deepseek-ai"
-
-   # symlink keeps the plugin updated in place (recommended while developing):
-   ln -s "$PWD/DeepSeek Harness/plugins/dsh-client-ui-usage" \
-     "$PROFILE/node_modules/@deepseek-ai/dsh-client-ui-usage"
-
-   # or copy it:
-   # cp -r "DeepSeek Harness/plugins/dsh-client-ui-usage" \
-   #   "$PROFILE/node_modules/@deepseek-ai/dsh-client-ui-usage"
-   ```
-
-2. Enable the plugin in the loader patch layer — append an insert entry to
-   the profile's `cordis.patch.yml` (this is the file DSH applies after every
-   bundle layer; `cordis.yml` itself is generated and must not be edited):
-
-   ```yaml
-   # ~/.dsh/profiles/web/cordis.patch.yml
-   - insert:
-       - id: ui-usage
-         name: '@deepseek-ai/dsh-client-ui-usage'
-   ```
-
-3. Restart the web UI and verify:
-
-   ```sh
-   dsh web
-   ```
-
-   Open the UI (default `http://127.0.0.1:3080`, or the port you passed,
-   e.g. `dsh --profile web --port 8080`). The usage pill appears in the
-   session header once the session has any activity. You can also confirm the
-   entry is loaded in Settings → Plugins (inventory), or that
-   `/plugins/@deepseek-ai/dsh-client-ui-usage/client.js` returns `200`.
-
-### Method B — Registry install (once published)
+### Method A — Local install (from this checkout)
 
 ```sh
-# install the package into the web profile's node_modules
-dsh plugin --profile web add @deepseek-ai/dsh-client-ui-usage
+# run from the repository root (the directory that contains "DeepSeek Harness"):
+dsh plugin --profile web add "./DeepSeek Harness/plugins/dsh-client-ui-usage"
 ```
 
-Then enable it with the same `cordis.patch.yml` insert entry as in Method A,
-and restart `dsh web`.
+`dsh plugin` links the checkout into the profile and appends
+`dsh-client-ui-usage` to the profile's bundle list, because the package
+declares `dsh.bundle`.
+
+### Method B — Registry install
+
+```sh
+dsh plugin --profile web add dsh-client-ui-usage
+```
+
+### Verify
+
+Restart the web UI:
+
+```sh
+dsh web
+```
+
+Open the UI (default `http://127.0.0.1:3080`, or the port you passed, e.g.
+`dsh --profile web --port 8080`). The usage pill appears in the session header
+once the session has any activity. You can also confirm the entry is loaded in
+Settings → Plugins (inventory), or that
+`/plugins/dsh-client-ui-usage/client.js` returns `200`.
 
 ## Usage
 
@@ -176,8 +155,9 @@ table (DeepSeek official CNY list prices) may change over time.
 - DeepSeek Harness web profile (`dsh web`).
 - Browser side requires the DSH client runtime, locale, and conversation UI
   surfaces (declared as `dsh.client.inject` in `package.json`).
-- Peer dependencies: `react ^18.2.0` and
-  `@deepseek-ai/dsh-client-ui-primitives ^0.1.0-rc.6`.
+- Peer dependencies: `react ^18.2.0`, `@deepseek-ai/dsh-client-ui-primitives`,
+  `@deepseek-ai/dsh-client-runtime`, `@deepseek-ai/dsh-client-locale`, and
+  `@deepseek-ai/dsh-client-ui-conversation` (all `^0.1.0-rc.6`).
 
 ## Project structure
 
@@ -186,7 +166,8 @@ dsh-client-ui-usage/
 ├── LICENSE              # MIT
 ├── README.md            # this file
 ├── README.zh-CN.md      # 中文说明
-├── package.json         # dsh.client declaration, exports, peer deps
+├── package.json         # dsh.bundle + dsh.client declaration, exports, peer deps
+├── cordis.patch.yml     # bundle patch — inserts the ui-usage Loader row
 ├── docs/
 │   └── images/          # UI screenshots (common/ universal, en/ + zh/ per locale)
 └── lib/
