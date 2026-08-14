@@ -69,6 +69,8 @@ loader 树中；浏览器端（`lib/client.js`）通过 `package.json` 中的 `d
 
 ## 安装方法
 
+已发布到 npm：[`dsh-client-ui-usage`](https://www.npmjs.com/package/dsh-client-ui-usage)。
+
 ### 前置条件
 
 - 已安装 `dsh` CLI，且 `web` profile 已初始化（至少运行过一次 `dsh web`，它会
@@ -78,7 +80,13 @@ loader 树中；浏览器端（`lib/client.js`）通过 `package.json` 中的 `d
 > 插件自带 bundle 补丁（`cordis.patch.yml`），因此 `dsh plugin add` 会同时完成
 > 安装与启用，无需再手工添加 `cordis.patch.yml` 记录。
 
-### 方式 A — 本地安装（从本仓库源码）
+### 安装
+
+```sh
+dsh plugin --profile web add dsh-client-ui-usage
+```
+
+### 从源码安装（开发用）
 
 ```sh
 # 在仓库根目录（包含 "DeepSeek Harness" 的目录）执行：
@@ -87,12 +95,6 @@ dsh plugin --profile web add "./DeepSeek Harness/plugins/dsh-client-ui-usage"
 
 `dsh plugin` 会把该目录链接进 profile，并因包声明了 `dsh.bundle` 而将
 `dsh-client-ui-usage` 追加到 profile 的 bundle 列表。
-
-### 方式 B — Registry 安装
-
-```sh
-dsh plugin --profile web add dsh-client-ui-usage
-```
 
 ### 验证
 

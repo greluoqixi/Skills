@@ -86,6 +86,9 @@ when the trajectory view is unavailable.
 
 ## Installation
 
+Published as [`dsh-client-ui-usage`](https://www.npmjs.com/package/dsh-client-ui-usage)
+on npm.
+
 ### Prerequisites
 
 - The `dsh` CLI is installed and the `web` profile has been initialized
@@ -96,7 +99,13 @@ when the trajectory view is unavailable.
 > add` both installs **and** activates it — no manual `cordis.patch.yml` entry
 > is needed.
 
-### Method A — Local install (from this checkout)
+### Install
+
+```sh
+dsh plugin --profile web add dsh-client-ui-usage
+```
+
+### Install from source (for development)
 
 ```sh
 # run from the repository root (the directory that contains "DeepSeek Harness"):
@@ -106,12 +115,6 @@ dsh plugin --profile web add "./DeepSeek Harness/plugins/dsh-client-ui-usage"
 `dsh plugin` links the checkout into the profile and appends
 `dsh-client-ui-usage` to the profile's bundle list, because the package
 declares `dsh.bundle`.
-
-### Method B — Registry install
-
-```sh
-dsh plugin --profile web add dsh-client-ui-usage
-```
 
 ### Verify
 
