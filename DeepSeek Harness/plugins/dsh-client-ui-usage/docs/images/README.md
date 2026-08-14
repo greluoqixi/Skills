@@ -50,8 +50,9 @@ docs/images/
 2. Decide whether the shot depends on language:
    - universal → place it in `common/`;
    - language-specific → place it in `en/` or `zh/` with a `_en` / `_zh` suffix.
-3. Reference it with a relative path, e.g.
-   - universal: `![Usage pill](./docs/images/common/brief_view.png)`
-   - English detail: `![Detail panel](./docs/images/en/details_en.png)`
+3. Reference it with an **absolute URL** (GitHub raw) — npm does not resolve
+   relative paths, and an absolute URL renders on both GitHub and npm, e.g.
+   - universal: `![Usage pill](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/common/brief_view.png)`
+   - English detail: `![Detail panel](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/en/details_en.png)`
 4. Overwrite in place on UI changes; if a filename must change, update every
    reference as well.

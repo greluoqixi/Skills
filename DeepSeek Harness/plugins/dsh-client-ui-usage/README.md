@@ -9,7 +9,7 @@ how much the current session is costing; clicking it opens a detail panel that
 breaks both figures down.
 
 - Package name: `dsh-client-ui-usage`
-- Version: `0.1.1`
+- Version: `0.1.2`
 - Type: DSH client plugin (platform `web`)
 - License: MIT
 
@@ -47,12 +47,12 @@ breaks both figures down.
 
 The compact usage pill in the session header:
 
-![Usage pill](./docs/images/common/brief_view.png)
+![Usage pill](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/common/brief_view.png)
 
 Clicking the pill opens the detail panel with the context-window and
 per-model billing breakdown:
 
-![Detail panel](./docs/images/en/details_en.png)
+![Detail panel](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/en/details_en.png)
 
 ## How it works
 

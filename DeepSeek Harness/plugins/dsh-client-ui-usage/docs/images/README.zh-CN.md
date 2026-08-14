@@ -47,7 +47,8 @@ docs/images/
 2. 判断截图是否依赖语言：
    - 通用视图 → 放入 `common/`；
    - 语言相关视图 → 放入 `en/` 或 `zh/`，并按 UI 语言加 `_en` / `_zh` 后缀。
-3. 引用时使用相对路径，例如：
-   - 通用：`![用量胶囊](./docs/images/common/brief_view.png)`
-   - 中文详情：`![详情面板](./docs/images/zh/details_zh.png)`
+3. 引用时使用**绝对 URL**（GitHub raw）——npm 不解析相对路径，绝对 URL 在
+   GitHub 与 npm 上都能显示，例如：
+   - 通用：`![用量胶囊](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/common/brief_view.png)`
+   - 中文详情：`![详情面板](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/zh/details_zh.png)`
 4. 界面有变化时同名覆盖；如文件名有调整，请同步更新所有引用。

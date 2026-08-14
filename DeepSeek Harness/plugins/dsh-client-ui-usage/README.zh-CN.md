@@ -7,7 +7,7 @@
 程度与当前会话的花费；点击后弹出详情面板，对两项数据进行细分。
 
 - 包名：`dsh-client-ui-usage`
-- 版本：`0.1.1`
+- 版本：`0.1.2`
 - 类型：DSH 客户端插件（platform `web`）
 - 许可证：MIT
 
@@ -38,11 +38,11 @@
 
 会话头部的简洁用量胶囊：
 
-![用量胶囊](./docs/images/common/brief_view.png)
+![用量胶囊](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/common/brief_view.png)
 
 点击胶囊可展开详情面板，查看上下文窗口与按模型分账的计费明细：
 
-![详情面板](./docs/images/zh/details_zh.png)
+![详情面板](https://raw.githubusercontent.com/greluoqixi/Skills/main/DeepSeek%20Harness/plugins/dsh-client-ui-usage/docs/images/zh/details_zh.png)
 
 ## 工作原理
 
