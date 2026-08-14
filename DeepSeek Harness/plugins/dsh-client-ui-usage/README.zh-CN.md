@@ -34,6 +34,16 @@
 - **无障碍支持** — 胶囊带完整 ARIA 标签，面板为标准 `role="dialog"`，支持
   Escape / 点击外部关闭。
 
+## 效果图
+
+会话头部的简洁用量胶囊：
+
+![用量胶囊](./docs/images/common/brief_view.png)
+
+点击胶囊可展开详情面板，查看上下文窗口与按模型分账的计费明细：
+
+![详情面板](./docs/images/zh/details_zh.png)
+
 ## 工作原理
 
 本插件是纯 UI 插件。宿主端（`lib/index.js`）为空 `apply`，仅用于让包出现在 DSH
@@ -155,6 +165,8 @@ dsh-client-ui-usage/
 ├── README.md            # 英文说明
 ├── README.zh-CN.md      # 本文件（中文说明）
 ├── package.json         # dsh.client 声明、exports、对等依赖
+├── docs/
+│   └── images/          # 界面效果图（common/ 通用，en/ 与 zh/ 按语言区分）
 └── lib/
     ├── index.js         # 宿主端 —— 空 apply（注册进 loader）
     └── client.js        # 浏览器端 —— UsageMeter 组件 + 中英文语言包

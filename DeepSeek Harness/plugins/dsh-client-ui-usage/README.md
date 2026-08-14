@@ -43,6 +43,17 @@ breaks both figures down.
 - **Accessible** — the pill carries a full ARIA label and the panel is a
   proper `role="dialog"` with Escape / outside-click dismissal.
 
+## Screenshots
+
+The compact usage pill in the session header:
+
+![Usage pill](./docs/images/common/brief_view.png)
+
+Clicking the pill opens the detail panel with the context-window and
+per-model billing breakdown:
+
+![Detail panel](./docs/images/en/details_en.png)
+
 ## How it works
 
 The plugin is a pure UI surface. The host half (`lib/index.js`) is an empty
@@ -176,6 +187,8 @@ dsh-client-ui-usage/
 ├── README.md            # this file
 ├── README.zh-CN.md      # 中文说明
 ├── package.json         # dsh.client declaration, exports, peer deps
+├── docs/
+│   └── images/          # UI screenshots (common/ universal, en/ + zh/ per locale)
 └── lib/
     ├── index.js         # host half — empty apply (registers in the loader)
     └── client.js        # browser half — UsageMeter component + zh/en locales
