@@ -12,7 +12,7 @@ and a browser half for client plugins).
 
 | Plugin | Function summary |
 | --- | --- |
-| [`dsh-client-ui-usage`](./plugins/dsh-client-ui-usage/README.md) | **Live usage meter in the session header**: context-window occupancy (`used / window` tokens, mini progress bar, streaming pulse) plus a real-time **per-model** billing estimate (pro / flash billed separately at their own rates, with a combined session total), a click-open detail panel, an official rate card (list / peak / off-peak), and a peak/off-peak badge. Bilingual EN/ZH UI. |
+| [`dsh-client-ui-usage`](./plugins/dsh-client-ui-usage/README.md) [![npm version](https://img.shields.io/npm/v/dsh-client-ui-usage)](https://www.npmjs.com/package/dsh-client-ui-usage) | **Live usage meter in the session header**: context-window occupancy (`used / window` tokens, mini progress bar, streaming pulse) plus a real-time **per-model** billing estimate (pro / flash billed separately at their own rates, with a combined session total), a click-open detail panel, an official rate card (list / peak / off-peak), and a peak/off-peak badge. Bilingual EN/ZH UI. |
 
 ## Compatibility and contributions
 
