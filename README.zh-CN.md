@@ -6,7 +6,8 @@
 Plugins 及其配套工具。
 
 每个 Agent 生态使用独立的一级目录，避免混淆各自的格式、安装方式和兼容性要求。
-Claude Code 与 Codex 是当前首批支持的生态，后续可以继续扩展其他 Agent。
+Claude Code、Codex 与 DeepSeek Harness 是当前支持的生态，后续可以继续扩展其他
+Agent。
 
 ## 仓库结构
 
@@ -14,6 +15,7 @@ Claude Code 与 Codex 是当前首批支持的生态，后续可以继续扩展�
 | --- | --- |
 | [`Claude Code/`](./Claude%20Code/README.zh-CN.md) | Claude Code Skills 与可安装 Plugins。 |
 | [`Codex/`](./Codex/) | Codex Skills 与 Plugins。 |
+| [`DeepSeek Harness/`](./DeepSeek%20Harness/README.zh-CN.md) | DeepSeek Harness（DSH）客户端与宿主 Plugins。 |
 
 ## 当前 Agent 与项目
 
@@ -31,9 +33,18 @@ Claude Code 相关的兼容性说明和项目导航请参阅
 
 暂未添加公开项目。
 
+### DeepSeek Harness
+
+- [`dsh-client-ui-usage`](./DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.zh-CN.md)
+  — 在 DSH Web 会话头部提供实时上下文窗口占用率与按模型（pro/flash）分账的计费
+  估算，点击可展开细分面板，并内置官方收费标准与高峰/空闲标记。
+
+DeepSeek Harness 相关的插件目录结构、安装方式与兼容性说明请参阅
+[DeepSeek Harness 集合说明](./DeepSeek%20Harness/README.zh-CN.md)。
+
 ## 贡献约定
 
-- Claude Code 与 Codex 扩展必须放在各自目录中。
+- Claude Code、Codex 与 DeepSeek Harness 扩展必须放在各自目录中。
 - 每个项目应独立提供 README、许可证信息、兼容性说明、测试和安装方法。
 - 不得提交凭据、私有项目知识、依赖生成目录或测试时克隆的外部仓库。
 - 提交前应使用文档所声明的产品版本与运行时完成验证和测试。

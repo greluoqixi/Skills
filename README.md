@@ -7,8 +7,8 @@ AI coding agents.
 
 Each agent ecosystem is kept in a separate top-level directory so that its
 formats, installation methods, and compatibility requirements remain clear.
-Claude Code and Codex are the first supported ecosystems; more agents may be
-added over time.
+Claude Code, Codex, and DeepSeek Harness are currently supported; more agents
+may be added over time.
 
 ## Repository layout
 
@@ -16,6 +16,7 @@ added over time.
 | --- | --- |
 | [`Claude Code/`](./Claude%20Code/README.md) | Claude Code Skills and installable Plugins. |
 | [`Codex/`](./Codex/) | Codex Skills and Plugins. |
+| [`DeepSeek Harness/`](./DeepSeek%20Harness/README.md) | DeepSeek Harness (DSH) client and host Plugins. |
 
 ## Supported agents and projects
 
@@ -35,9 +36,20 @@ Claude Code-specific compatibility and project navigation.
 
 No public projects have been added yet.
 
+### DeepSeek Harness
+
+- [`dsh-client-ui-usage`](./DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.md)
+  — Live context-window occupancy meter and per-model (pro/flash) billing
+  estimate in the DSH web session header, with a click-open breakdown panel,
+  an official rate card, and a peak/off-peak indicator.
+
+See the [DeepSeek Harness collection README](./DeepSeek%20Harness/README.md)
+for DeepSeek Harness-specific plugin layout, installation, and compatibility.
+
 ## Contributing
 
-- Keep Claude Code and Codex extensions in their respective directories.
+- Keep Claude Code, Codex, and DeepSeek Harness extensions in their respective
+  directories.
 - Give each project its own README, license information, compatibility notes,
   tests, and installation instructions.
 - Do not commit credentials, private project knowledge, generated dependency
