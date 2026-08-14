@@ -1,7 +1,7 @@
 {
   "name": "dsh-client-ui-usage",
   "description": "Live usage surface: context-window occupancy meter and real-time billing estimates in the session header",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -22,7 +22,8 @@
     "lib/index.js",
     "lib/client.js",
     "cordis.patch.yml",
-    "LICENSE"
+    "LICENSE",
+    "docs/images"
   ],
   "dsh": {
     "bundle": {

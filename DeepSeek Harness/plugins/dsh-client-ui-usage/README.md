@@ -9,7 +9,7 @@ how much the current session is costing; clicking it opens a detail panel that
 breaks both figures down.
 
 - Package name: `dsh-client-ui-usage`
-- Version: `0.1.0`
+- Version: `0.1.1`
 - Type: DSH client plugin (platform `web`)
 - License: MIT
 
