@@ -38,6 +38,8 @@ No public projects have been added yet.
 
 ### DeepSeek Harness
 
+- [`launcher`](./DeepSeek%20Harness/launcher/README.md) — Linux desktop launcher
+  for a dedicated DSH Web UI window, with dependency setup and process cleanup.
 - [`dsh-client-ui-usage`](./DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.md)
   — Live context-window occupancy meter and per-model (pro/flash) billing
   estimate in the DSH web session header, with a click-open breakdown panel,

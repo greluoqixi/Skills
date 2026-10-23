@@ -2,11 +2,14 @@
 
 # DeepSeek Harness Extensions
 
-This directory collects plugins for **DeepSeek Harness** (DSH) — the agent
+This directory collects extensions for **DeepSeek Harness** (DSH) — the agent
 runtime that powers DeepSeek's coding agents. Plugins live under
 [`plugins/`](./plugins/), one folder per package, following the DSH plugin
 conventions (`package.json` with a `dsh` manifest, a host half under `lib/`,
 and a browser half for client plugins).
+
+The [Linux launcher](./launcher/README.md) is a separate desktop helper for
+starting and stopping the DSH Web UI.
 
 ## Available plugins
 

@@ -35,6 +35,8 @@ Claude Code 相关的兼容性说明和项目导航请参阅
 
 ### DeepSeek Harness
 
+- [`launcher`](./DeepSeek%20Harness/launcher/README.zh-CN.md)
+  — Linux 桌面启动器，提供依赖配置、独立 DSH Web 窗口和退出时的进程清理。
 - [`dsh-client-ui-usage`](./DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.zh-CN.md)
   — 在 DSH Web 会话头部提供实时上下文窗口占用率与按模型（pro/flash）分账的计费
   估算，点击可展开细分面板，并内置官方收费标准与高峰/空闲标记。

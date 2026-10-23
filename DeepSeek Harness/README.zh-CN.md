@@ -3,8 +3,11 @@
 # DeepSeek Harness 扩展
 
 本目录收集面向 **DeepSeek Harness**（DSH）—— 驱动 DeepSeek 编程 Agent 的运行时
-—— 的插件。插件按包分别放在 [`plugins/`](./plugins/) 目录下，遵循 DSH 插件规范
+—— 的扩展。插件按包分别放在 [`plugins/`](./plugins/) 目录下，遵循 DSH 插件规范
 （含 `dsh` 清单的 `package.json`、`lib/` 下的宿主端，以及客户端插件的浏览器端）。
+
+[Linux 启动器](./launcher/README.zh-CN.md) 是独立的桌面辅助程序，用来启动与关闭
+DSH Web UI。
 
 ## 现有插件
 
