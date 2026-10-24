@@ -40,6 +40,9 @@ Claude Code 相关的兼容性说明和项目导航请参阅
 - [`dsh-client-ui-usage`](./DeepSeek%20Harness/plugins/dsh-client-ui-usage/README.zh-CN.md)
   — 在 DSH Web 会话头部提供实时上下文窗口占用率与按模型（pro/flash）分账的计费
   估算，点击可展开细分面板，并内置官方收费标准与高峰/空闲标记。
+- [`dsh-client-voice-input`](./DeepSeek%20Harness/plugins/dsh-client-voice-input/README.zh-CN.md)
+  — DSH 输入框的离线语音输入：按需安装 SenseVoiceSmall INT8，在本机转写并以一次
+  可撤销编辑插入草稿，音频不上传云端。
 
 DeepSeek Harness 相关的插件目录结构、安装方式与兼容性说明请参阅
 [DeepSeek Harness 集合说明](./DeepSeek%20Harness/README.zh-CN.md)。

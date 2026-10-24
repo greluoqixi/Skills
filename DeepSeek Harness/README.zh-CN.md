@@ -14,6 +14,7 @@ DSH Web UI。
 | 插件 | 功能概括 |
 | --- | --- |
 | [`dsh-client-ui-usage`](./plugins/dsh-client-ui-usage/README.zh-CN.md) [![npm version](https://img.shields.io/npm/v/dsh-client-ui-usage)](https://www.npmjs.com/package/dsh-client-ui-usage) | **会话头部实时用量仪表**：上下文窗口占用率（`已用 / 窗口` tokens、迷你进度条、流式脉动指示）与实时**按模型分账**的计费估算（pro / flash 分别按各自费率计费，并给出合并的会话合计），点击展开详情面板，内置官方收费标准（现行 / 高峰 / 空闲）与高峰/空闲徽标。中英文双语界面。 |
+| [`dsh-client-voice-input`](./plugins/dsh-client-voice-input/README.zh-CN.md) | **离线语音输入**：首次按需下载 SenseVoiceSmall INT8，点击录音、停录后在本机转写并插入草稿；支持手动模型与 Python 路径。 |
 
 ## 兼容性与贡献约定
 

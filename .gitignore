@@ -2,6 +2,7 @@
 /.agents/
 /.codex/
 /tmp/
+/.tmp-verify/
 
 # Dependencies and generated test output
 **/node_modules/

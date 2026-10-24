@@ -44,6 +44,10 @@ No public projects have been added yet.
   — Live context-window occupancy meter and per-model (pro/flash) billing
   estimate in the DSH web session header, with a click-open breakdown panel,
   an official rate card, and a peak/off-peak indicator.
+- [`dsh-client-voice-input`](./DeepSeek%20Harness/plugins/dsh-client-voice-input/README.md)
+  — Offline push-to-record voice input for the DSH composer: on-demand
+  SenseVoiceSmall INT8 setup, local transcription, and one-undo draft insertion
+  without sending audio to a cloud service.
 
 See the [DeepSeek Harness collection README](./DeepSeek%20Harness/README.md)
 for DeepSeek Harness-specific plugin layout, installation, and compatibility.

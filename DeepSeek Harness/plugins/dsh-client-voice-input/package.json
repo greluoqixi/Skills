@@ -1,0 +1,31 @@
+{
+  "name": "dsh-client-voice-input",
+  "version": "0.10.1",
+  "description": "Offline push-to-record voice input for DeepSeek Harness",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib", "runtime", "docs", "cordis.patch.yml", "LICENSE"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-shortcuts",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-client-connection": "^0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-ui-conversation": "^0.2.1-rc.2",
+    "react": "^18.2.0"
+  },
+  "license": "MIT",
+  "scripts": { "test": "node --test test/*.test.js" }
+}
